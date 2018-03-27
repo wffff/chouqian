@@ -3,6 +3,7 @@ package com.chouqian.chouqian.controller;
 import com.chouqian.chouqian.baseConfig.ReturnMessage;
 import com.chouqian.chouqian.entity.MobileEntity;
 import com.chouqian.chouqian.service.IMobileService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,7 @@ public class MobileController {
 
     @RequestMapping("/chouqian")
     public String chouqian(Model model) {
-        List<MobileEntity> list=findAll().getData();
+        List<MobileEntity> list=iMobileService.findAll();
         List<String> mobileList=new ArrayList<>();
         for (MobileEntity m:list){
             mobileList.add(m.getNumber());
@@ -46,9 +47,9 @@ public class MobileController {
 
     @ResponseBody
     @RequestMapping("mobile/findAll")
-    public ReturnMessage<List<MobileEntity>> findAll() {
-        List<MobileEntity> list = iMobileService.findAll();
-        return ReturnMessage.success(list.size(), list);
+    public ReturnMessage<List<MobileEntity>> findAll(@RequestParam(value = "page",defaultValue = "1") Integer page,@RequestParam(value = "limit",defaultValue = "20")Integer limit) {
+        Page<MobileEntity> list = iMobileService.findAll(page,limit);
+        return ReturnMessage.success((int)list.getTotalElements(), list.getContent());
     }
 
     @ResponseBody

@@ -13,6 +13,8 @@ layui.use(['jquery', 'table', 'form'], function () {
         ]]
         , width: 600
         , height: 600
+        ,page: true
+
     });
 
     var active = {

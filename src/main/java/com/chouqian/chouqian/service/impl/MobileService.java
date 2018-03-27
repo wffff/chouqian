@@ -3,6 +3,8 @@ package com.chouqian.chouqian.service.impl;
 import com.chouqian.chouqian.entity.MobileEntity;
 import com.chouqian.chouqian.repository.IMobileRepository;
 import com.chouqian.chouqian.service.IMobileService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +18,11 @@ import java.util.List;
 public class MobileService implements IMobileService {
     @Resource
     private IMobileRepository iMobileRepository;
+
+    @Override
+    public Page<MobileEntity> findAll(Integer page, Integer limit) {
+        return iMobileRepository.findAll(new PageRequest(page-1,limit));
+    }
 
     @Override
     public List<MobileEntity> findAll() {
