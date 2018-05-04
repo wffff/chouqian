@@ -1,0 +1,18 @@
+server:
+  port: 8888
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: utf-8
+spring:
+  datasource:
+    url: jdbc:postgresql://www.xinner.pw:443/postgres
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
