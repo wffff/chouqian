@@ -48,6 +48,8 @@ public class MobileController {
     @ResponseBody
     @RequestMapping("mobile/findAll")
     public ReturnMessage<List<MobileEntity>> findAll(@RequestParam(value = "page",defaultValue = "1") Integer page,@RequestParam(value = "limit",defaultValue = "20")Integer limit) {
+        //page是第几页
+        //limit是一页多少条
         Page<MobileEntity> list = iMobileService.findAll(page,limit);
         return ReturnMessage.success((int)list.getTotalElements(), list.getContent());
     }

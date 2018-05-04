@@ -21,6 +21,7 @@ public class MobileService implements IMobileService {
 
     @Override
     public Page<MobileEntity> findAll(Integer page, Integer limit) {
+        //PageRequest是springJPA封装的分页查询 为什么-1因为第一页在计算机里面是第0页 中西方认识误区
         return iMobileRepository.findAll(new PageRequest(page-1,limit));
     }
 
